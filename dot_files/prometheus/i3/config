@@ -2,14 +2,14 @@
 
 set $BROWSER            firefox
 set $FILE_MANAGER       nautilus
-set $TERMINAL           gnome-terminal
+set $TERMINAL           alacritty
 set $EDITOR             gedit
 set $USER               xavier666
 set $SCRIPT_DIR         /home/$USER/Documents/scripts_dir
 set $HOME               /home/$USER
 set $mod                Mod1
-set $bor_width          1
-set $bor_radius         3
+set $bor_width          0
+set $bor_radius         4
 
 #----------------------- i3 configuration --------------------------------------
 
@@ -58,12 +58,12 @@ client.background       #ffffff
 for_window[instance="scratch_py"] floating enable
 for_window[instance="scratch_py"] resize set 925 500
 for_window[instance="scratch_py"] move scratchpad
-for_window[instance="scratch_py"] border pixel 10
+for_window[instance="scratch_py"] border pixel 6
 
 for_window[instance="scratch_term"] floating enable
 for_window[instance="scratch_term"] resize set 925 500
 for_window[instance="scratch_term"] move scratchpad
-for_window[instance="scratch_term"] border pixel 10
+for_window[instance="scratch_term"] border pixel 6
 
 #----------------------- autostart with i3 -------------------------------------
 
