@@ -2,13 +2,13 @@
 
 set $BROWSER            firefox
 set $FILE_MANAGER       nautilus
-set $TERMINAL           gnome-terminal
+set $TERMINAL           alacritty
 set $EDITOR             gedit
 set $USER               xavier666
 set $SCRIPT_DIR         /home/$USER/Documents/scripts_dir
 set $HOME               /home/$USER
 set $mod                Mod1
-set $bor_width          4
+set $bor_width          0
 set $bor_radius         3
 
 #----------------------- i3 configuration --------------------------------------
