@@ -66,7 +66,7 @@ def main():
         if os.path.isdir(".git") is False:
             sp.call("git init", shell=True)
 
-        sp.call("git add .", shell=True)
+        sp.call("git add . --force", shell=True)
         sp.call("git commit -m 'dot files pushed by user {} for machine {}'".format(user_name, dev_id), shell=True)
         sp.call("git push origin master", shell=True)
     else:
