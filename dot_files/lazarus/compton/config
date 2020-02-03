@@ -1,0 +1,27 @@
+# SHADOW
+shadow              = true; 		# Enabled client-side shadows on windows
+no-dock-shadow      = true; 		# Avoid drawing shadows on dock/panel windows
+no-dnd-shadow       = true; 		# Don't draw shadows on drag-and-drop windows
+clear-shadow        = true; 		# Zero the part of the shadow's mask behind the window (experimental)
+shadow-radius       = 13;   		# The blur radius for shadows (default 12)
+shadow-offset-x     = -7;   		# The left offset for shadows (default -15)
+shadow-offset-y     = -7;   		# The top offset for shadows (default -15)
+
+# BLUR
+blur-background       = true;
+blur-background-frame = false;
+blur-background-fixed = false;
+blur-kern             = "3x3box";
+blur-method           = "kawase";
+blur-strength         = 7;
+
+# VSYNC
+backend             = "glx";
+vsync               = "opengl-swc";
+
+# WORKSPACE FADING
+fading                = true;
+fade-delta            = 3;
+fade-in-step          = 0.03;
+fade-out-step         = 0.03;
+frame-opacity         = 1;

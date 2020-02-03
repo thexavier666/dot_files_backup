@@ -1,0 +1,38 @@
+delete 121444.jpg
+set colorscheme jungle
+set colorscheme solarized
+set colorscheme butter
+set colorscheme snow
+D
+mkdir sample_json_code
+rename shared_storage_system_with_container.pdf
+mkdir ss_dump
+rename Iosevka-Nerd-Font-Complete-Mono.ttf
+rename Iosevka-Term-Nerd-Font-Complete-Mono.ttf
+rename artwork-dark-peace-artworks-wallpaper-vector-hd-artworks.jpg
+rename
+rename *
+rename system_overview.txt
+rename system_overview.tex
+search .gif
+open_with 
+open_with vim
+rename 
+rename clan_score.html
+rename id_card.tgn
+search Mi
+rename tron_yellow_bike.jpg
+rename scripts_dir
+mkdir final_pics
+search final
+search fi
+search fin
+search f
+mkdir deb
+search de
+
+mkdir git_remote
+rename svn_remote
+rename nice.jpg
+rename amara_time.csv
+delete
