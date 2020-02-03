@@ -1,0 +1,227 @@
+#----------------------- Common application variable ---------------------------
+
+set $BROWSER            firefox
+set $FILE_MANAGER       nautilus
+set $TERMINAL           gnome-terminal
+set $EDITOR             gedit
+set $USER               xavier666
+set $SCRIPT_DIR         /home/$USER/Documents/scripts_dir
+set $HOME               /home/$USER
+set $mod                Mod1
+set $bor_width          1
+set $bor_radius         3
+
+#----------------------- i3 configuration --------------------------------------
+
+floating_modifier       $mod
+focus_follows_mouse     no
+font                    pango:Iosevka Term Regular 10
+border_radius           $bor_radius
+
+# no title for windows AND a tiny border pixel
+for_window [class="^.*"] border pixel $bor_width
+
+## binding workspace to display
+workspace "1"           output DP-1
+workspace "2"           output DP-1
+workspace "3"           output DP-1
+workspace "4"           output DP-1
+workspace "9"           output DP-1
+
+workspace "5"           output DP-2
+workspace "6"           output DP-2
+workspace "7"           output DP-2
+workspace "8"           output DP-2
+workspace "10"          output DP-2
+
+# creating gaps between the windows
+gaps inner              20
+gaps outer              0
+gaps horizontal         0
+gaps vertical           0
+gaps top                0
+gaps bottom             0
+gaps right              0
+gaps left               0
+
+## coloring of the borders of the individual windows
+# class                 border  backgr. text    indicator child_border
+client.focused          #0000FF #285577 #ffffff #00BFFF   #00BFFF
+client.focused_inactive #000000 #000000 #888888 #000000   #000000
+client.unfocused        #000000 #000000 #888888 #000000   #000000
+client.urgent           #0091ff #900000 #ffffff #0091ff   #0091ff
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+
+#----------------------- scratchpads -------------------------------------------
+
+for_window[instance="scratch_py"] floating enable
+for_window[instance="scratch_py"] resize set 925 500
+for_window[instance="scratch_py"] move scratchpad
+for_window[instance="scratch_py"] border pixel 10
+
+for_window[instance="scratch_term"] floating enable
+for_window[instance="scratch_term"] resize set 925 500
+for_window[instance="scratch_term"] move scratchpad
+for_window[instance="scratch_term"] border pixel 10
+
+#----------------------- autostart with i3 -------------------------------------
+
+exec_always     --no-startup-id compton --config $HOME/.config/compton/config
+exec_always     --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always     --no-startup-id dunst
+exec            --no-startup-id nitrogen --restore
+exec            --no-startup-id sakura --name="scratch_term"
+exec            --no-startup-id sakura --name="scratch_py" -x "ipython3 --no-banner"
+
+#----------------------- i3 keybindings ----------------------------------------
+
+bindsym $mod+Shift+q            kill
+bindsym $mod+Shift+r            restart
+
+# split in horizontal orientation
+bindsym $mod+c                  split h
+
+# split in vertical orientation
+bindsym $mod+v                  split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f                  fullscreen toggle
+
+# change container layout (tabbed, toggle split)
+bindsym $mod+w                  layout tabbed
+bindsym $mod+e                  layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space        floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space              focus mode_toggle
+
+# change focus
+bindsym $mod+h                  focus left
+bindsym $mod+j                  focus down
+bindsym $mod+k                  focus up
+bindsym $mod+l                  focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left               focus left
+bindsym $mod+Down               focus down
+bindsym $mod+Up                 focus up
+bindsym $mod+Right              focus right
+
+# move focused window
+bindsym $mod+Shift+h            move left
+bindsym $mod+Shift+j            move down
+bindsym $mod+Shift+k            move up
+bindsym $mod+Shift+l            move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left         move left
+bindsym $mod+Shift+Down         move down
+bindsym $mod+Shift+Up           move up
+bindsym $mod+Shift+Right        move right
+
+# resizing windows on the fly
+bindsym $mod+Ctrl+h             resize shrink width         1 px or 1 ppt
+bindsym $mod+Ctrl+j             resize grow height          1 px or 1 ppt
+bindsym $mod+Ctrl+k             resize shrink height        1 px or 1 ppt
+bindsym $mod+Ctrl+l             resize grow width           1 px or 1 ppt
+
+# same bindings, but for the arrow keys
+bindsym $mod+Ctrl+Left          resize shrink width         1 px or 1 ppt
+bindsym $mod+Ctrl+Down          resize grow height          1 px or 1 ppt
+bindsym $mod+Ctrl+Up            resize shrink height        1 px or 1 ppt
+bindsym $mod+Ctrl+Right         resize grow width           1 px or 1 ppt
+
+# dynamically changing inner and outer gaps
+bindsym Mod4+h                  gaps inner current plus     2
+bindsym Mod4+l                  gaps inner current minus    2
+bindsym Mod4+j                  gaps outer current minus    2
+bindsym Mod4+k                  gaps outer current plus     2
+
+#----------------------- workspace keybindings ---------------------------------
+
+# switch to workspace
+bindsym $mod+1                  workspace 1
+bindsym $mod+2                  workspace 2
+bindsym $mod+3                  workspace 3
+bindsym $mod+4                  workspace 4
+bindsym $mod+5                  workspace 5
+bindsym $mod+6                  workspace 6
+bindsym $mod+7                  workspace 7
+bindsym $mod+8                  workspace 8
+bindsym $mod+9                  workspace 9
+bindsym $mod+0                  workspace 10
+
+bindsym $mod+F1                 workspace 5
+bindsym $mod+F2                 workspace 6
+bindsym $mod+F3                 workspace 7
+bindsym $mod+F4                 workspace 8
+
+# move focused container to workspace
+bindsym $mod+Shift+1            move container to workspace 1
+bindsym $mod+Shift+2            move container to workspace 2
+bindsym $mod+Shift+3            move container to workspace 3
+bindsym $mod+Shift+4            move container to workspace 4
+bindsym $mod+Shift+5            move container to workspace 5
+bindsym $mod+Shift+6            move container to workspace 6
+bindsym $mod+Shift+7            move container to workspace 7
+bindsym $mod+Shift+8            move container to workspace 8
+bindsym $mod+Shift+9            move container to workspace 9
+bindsym $mod+Shift+0            move container to workspace 10
+
+bindsym $mod+Shift+F1           move container to workspace 5
+bindsym $mod+Shift+F2           move container to workspace 6
+bindsym $mod+Shift+F3           move container to workspace 7
+bindsym $mod+Shift+F4           move container to workspace 8
+
+# shift to next/previous workspace
+bindsym $mod+grave              workspace next_on_output
+bindsym $mod+Shift+grave        workspace prev_on_output
+bindsym $mod+Tab                workspace back_and_forth
+
+#----------------------- application keybindings -------------------------------
+
+## changing volume
+bindsym $mod+bracketleft        exec --no-startup-id pactl -- set-sink-volume 0 -5% #increase sound volume
+bindsym $mod+bracketright       exec --no-startup-id pactl -- set-sink-volume 0 +5% #decrease sound volume
+
+## For CMUS only
+bindsym Print                   exec --no-startup-id cmus-remote -u
+bindsym Scroll_Lock             exec --no-startup-id cmus-remote -r
+bindsym Pause                   exec --no-startup-id cmus-remote -n
+bindsym $mod+Scroll_Lock        exec --no-startup-id cmus-remote -v -5%
+bindsym $mod+Pause              exec --no-startup-id cmus-remote -v +5%
+
+## Redshift
+bindsym Mod4+F5                 exec redshift -O 3700k
+bindsym Mod4+F6                 exec redshift -O 5500k
+
+## COMPTON only
+bindsym F9                      exec --no-startup-id killall compton
+bindsym F10                     exec --no-startup-id compton --config $HOME/.config/compton/config
+
+## Enable/Disable Dunst
+bindsym F11                     exec --no-startup-id notify-send "DUNST_COMMAND_RESUME"
+bindsym F12                     exec --no-startup-id notify-send "DUNST_COMMAND_PAUSE"
+
+bindsym $mod+n                  [instance="scratch_term"] scratchpad show; [instance="scratch_term"] move position center
+bindsym $mod+m                  [instance="scratch_py"]   scratchpad show; [instance="scratch_py"]   move position center
+
+#----------------------- application shortcuts ---------------------------------
+
+bindsym $mod+Return             exec --no-startup-id $TERMINAL
+bindsym $mod+Shift+o            exec --no-startup-id $BROWSER 
+bindsym $mod+Shift+p            exec --no-startup-id $FILE_MANAGER
+bindsym $mod+Shift+u            exec --no-startup-id $EDITOR
+bindsym $mod+Shift+f            exec --no-startup-id firefox
+bindsym $mod+Shift+i            exec --no-startup-id spotify 
+bindsym $mod+d                  exec --no-startup-id rofi -show run -lines 7 -width 40 -display-run "> "
+bindsym $mod+s                  exec --no-startup-id $SCRIPT_DIR/standalone/power_menu
+bindsym $mod+Shift+y            exec --no-startup-id yakyak
+bindsym $mod+q                  exec --no-startup-id i3lock-fancy -f Iosevka-Term-Bold
+
+#----------------------- binding applications to workspace ---------------------
+
+assign [class="yakyak"] "10"
