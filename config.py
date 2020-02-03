@@ -16,3 +16,12 @@ def BACKUP_LIST():
 # directory which contains all backups for all machines
 def BACKUP_DIRECTORY():
     return "dot_files"
+
+def GIT_USERNAME():
+    return "thexavier666"
+
+def GIT_USEREMAIL():
+    return "sumitros@gmail.com"
+
+def GIT_REMOTE_URL():
+    return "https://github.com/{}/dot_files_backup.git".format(GIT_USERNAME)

@@ -39,7 +39,9 @@ def main():
     if os.path.isdir(dev_backup_dir) is not True:
         os.mkdir(dev_backup_dir)
 
+    # creating a local copy of the dot files
     if backup_mode == 'local':
+
         with open(dot_file_list) as fp:
             for row in fp:
 
@@ -61,13 +63,16 @@ def main():
                     print("[ERROR] Directory for APP {} does not exist!".format(row.strip()))
 
             print("[INFO ] Backup complete for all apps of device {}".format(dev_id))
+
+    # uploading local copy of the dot files to github
     elif backup_mode == 'remote':
 
+        # if using for the first time
         if os.path.isdir(".git") is False:
             sp.call("git init", shell=True)
-            # put email
-            # put username
-            # put remote origin
+            sp.call("git config user.email {}".format(config.GIT_USEREMAIL()), shell=True)
+            sp.call("git config user.name {}".format(config.GIT_USERNAME()), shell=True)
+            sp.call("git add remote origin {}".format(config.GIT_REMOTE_URL()), shell=True)
 
         sp.call("git pull origin master", shell=True)
         sp.call("git add . --force", shell=True)
