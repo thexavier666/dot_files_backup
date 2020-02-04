@@ -61,12 +61,12 @@ client.background       #ffffff
 for_window[instance="scratch_py"] floating enable
 for_window[instance="scratch_py"] resize set 925 500
 for_window[instance="scratch_py"] move scratchpad
-for_window[instance="scratch_py"] border pixel 6
+for_window[instance="scratch_py"] border pixel $scratch_border
 
 for_window[instance="scratch_term"] floating enable
 for_window[instance="scratch_term"] resize set 925 500
 for_window[instance="scratch_term"] move scratchpad
-for_window[instance="scratch_term"] border pixel 6
+for_window[instance="scratch_term"] border pixel $scratch_border
 
 #----------------------- autostart with i3 -------------------------------------
 
