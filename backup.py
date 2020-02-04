@@ -5,10 +5,10 @@ import os
 import config
 import subprocess as sp
 
+from platform import node
 from distutils.dir_util import copy_tree
 
-# Argument 1 - Device/Machine Name (String)
-# Argument 2 - Type of backup ("remote"/"local")
+# Argument 1 - Type of backup ("remote"/"local")
 
 def main():
 
@@ -20,10 +20,10 @@ def main():
     user_name           = config.USERNAME()
 
     # getting device id
-    dev_id              = sys.argv[1]
+    dev_id              = node() 
 
     # whether backup will be local or on github
-    backup_mode         = sys.argv[2]
+    backup_mode         = sys.argv[1]
 
     # directory of all local backups
     dev_backup_dir      = "{}/{}/".format(dot_file_backup_dir, dev_id)
