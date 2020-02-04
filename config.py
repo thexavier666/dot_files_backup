@@ -1,7 +1,7 @@
 # location of the users active dot files
 # default value is ".config/"
 def CONFIG_DIRECTORY():
-    return ".config/"
+    return ".config"
 
 # the current user's username
 # it can be replaced by system call

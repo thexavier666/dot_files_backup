@@ -9,7 +9,10 @@ set $SCRIPT_DIR         /home/$USER/Documents/scripts_dir
 set $HOME               /home/$USER
 set $mod                Mod1
 set $bor_width          0
-set $bor_radius         3
+set $bor_radius         4
+set $scratch_border     6
+set $display_dev_1      eDP-1
+set $display_dev_2      eDP-1
 
 #----------------------- i3 configuration --------------------------------------
 
@@ -20,6 +23,19 @@ border_radius           $bor_radius
 
 # no title for windows AND a tiny border pixel
 for_window [class="^.*"] border pixel $bor_width
+
+## binding workspace to display
+workspace "1"           output $display_dev_1
+workspace "2"           output $display_dev_1
+workspace "3"           output $display_dev_1
+workspace "4"           output $display_dev_1
+workspace "9"           output $display_dev_1
+
+workspace "5"           output $display_dev_2
+workspace "6"           output $display_dev_2
+workspace "7"           output $display_dev_2
+workspace "8"           output $display_dev_2
+workspace "10"          output $display_dev_2
 
 # creating gaps between the windows
 gaps inner              20
@@ -45,12 +61,12 @@ client.background       #ffffff
 for_window[instance="scratch_py"] floating enable
 for_window[instance="scratch_py"] resize set 925 500
 for_window[instance="scratch_py"] move scratchpad
-for_window[instance="scratch_py"] border pixel 10
+for_window[instance="scratch_py"] border pixel 6
 
 for_window[instance="scratch_term"] floating enable
 for_window[instance="scratch_term"] resize set 925 500
 for_window[instance="scratch_term"] move scratchpad
-for_window[instance="scratch_term"] border pixel 10
+for_window[instance="scratch_term"] border pixel 6
 
 #----------------------- autostart with i3 -------------------------------------
 

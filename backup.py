@@ -46,7 +46,7 @@ def main():
             for row in fp:
 
                 # fetching the dot file directory
-                app_dot_dir = "/home/{}/{}{}".format(user_name, config_dir, row.strip())
+                app_dot_dir = "/home/{}/{}/{}".format(user_name, config_dir, row.strip())
 
                 # checking if the app exists
                 if os.path.isdir(app_dot_dir) is True:
