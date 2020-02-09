@@ -38,7 +38,7 @@ workspace "8"           output $display_dev_2
 workspace "10"          output $display_dev_2
 
 # creating gaps between the windows
-gaps inner              20
+gaps inner              5
 gaps outer              0
 gaps horizontal         0
 gaps vertical           0
