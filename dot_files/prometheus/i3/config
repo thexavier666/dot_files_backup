@@ -11,14 +11,15 @@ set $mod                Mod1
 set $bor_width          0
 set $bor_radius         4
 set $scratch_border     6
+set $gap_inner          6
 set $display_dev_1      DP-1
 set $display_dev_2      DP-2
 
 #----------------------- i3 configuration --------------------------------------
 
+font                    pango:Iosevka Term Regular 10
 floating_modifier       $mod
 focus_follows_mouse     no
-font                    pango:Iosevka Term Regular 10
 border_radius           $bor_radius
 
 # no title for windows AND a tiny border pixel
@@ -38,7 +39,7 @@ workspace "8"           output $display_dev_2
 workspace "10"          output $display_dev_2
 
 # creating gaps between the windows
-gaps inner              5
+gaps inner              $gap_inner
 gaps outer              0
 gaps horizontal         0
 gaps vertical           0
