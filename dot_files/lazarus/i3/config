@@ -11,14 +11,15 @@ set $mod                Mod1
 set $bor_width          0
 set $bor_radius         4
 set $scratch_border     6
+set $gap_inner          6
 set $display_dev_1      eDP-1
 set $display_dev_2      eDP-1
 
 #----------------------- i3 configuration --------------------------------------
 
+font                    pango:Iosevka Term Regular 10
 floating_modifier       $mod
 focus_follows_mouse     no
-font                    pango:Iosevka Term Regular 10
 border_radius           $bor_radius
 
 # no title for windows AND a tiny border pixel
@@ -38,7 +39,7 @@ workspace "8"           output $display_dev_2
 workspace "10"          output $display_dev_2
 
 # creating gaps between the windows
-gaps inner              20
+gaps inner              $gap_inner
 gaps outer              0
 gaps horizontal         0
 gaps vertical           0
@@ -68,6 +69,11 @@ for_window[instance="scratch_term"] resize set 925 500
 for_window[instance="scratch_term"] move scratchpad
 for_window[instance="scratch_term"] border pixel $scratch_border
 
+for_window[instance="scratch_flt"] floating enable
+for_window[instance="scratch_flt"] resize set 900 200
+for_window[instance="scratch_flt"] move absolute position center 
+for_window[instance="scratch_flt"] border pixel $scratch_border
+
 #----------------------- autostart with i3 -------------------------------------
 
 exec_always     --no-startup-id compton --config $HOME/.config/compton/config
@@ -75,8 +81,8 @@ exec_always     --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always     --no-startup-id dunst
 exec            --no-startup-id nitrogen --restore
 exec            --no-startup-id xinput set-prop 13 277 1
-exec            --no-startup-id sakura --name="scratch_term"
-exec            --no-startup-id sakura --name="scratch_py" -x "ipython3 --no-banner"
+exec            --no-startup-id $TERMINAL --class="scratch_term"
+exec            --no-startup-id $TERMINAL --class="scratch_py" -e ipython3 --no-banner
 
 #----------------------- i3 keybindings ----------------------------------------
 
@@ -188,8 +194,8 @@ bindsym $mod+Tab                workspace back_and_forth
 #----------------------- application keybindings -------------------------------
 
 # bluetooth stuff
-bindsym Mod4+b                  exec --no-startup-id exec sakura -x $SCRIPT_DIR/standalone/bluetooth_toggle
-bindsym Mod4+c                  exec --no-startup-id exec sakura -x $SCRIPT_DIR/standalone/connect_headphone
+bindsym Mod4+b                  exec --no-startup-id exec $TERMINAL --class="scratch_flt" -e $SCRIPT_DIR/standalone/bluetooth_toggle 
+bindsym Mod4+c                  exec --no-startup-id exec $TERMINAL --class="scratch_flt" -e $SCRIPT_DIR/standalone/connect_headphone
 
 ## changing volume
 bindsym $mod+bracketleft        exec --no-startup-id pactl -- set-sink-volume 0 -5% #increase sound volume
