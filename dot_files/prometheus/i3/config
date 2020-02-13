@@ -75,8 +75,8 @@ exec_always     --no-startup-id compton --config $HOME/.config/compton/config
 exec_always     --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always     --no-startup-id dunst
 exec            --no-startup-id nitrogen --restore
-exec            --no-startup-id sakura --name="scratch_term"
-exec            --no-startup-id sakura --name="scratch_py" -x "ipython3 --no-banner"
+exec            --no-startup-id $TERMINAL --class="scratch_term"
+exec            --no-startup-id $TERMINAL --class="scratch_py" -e ipython3 --no-banner
 
 #----------------------- i3 keybindings ----------------------------------------
 
