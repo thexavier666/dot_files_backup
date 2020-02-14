@@ -19,7 +19,7 @@ set $mod-alt            Mod4
 
 #----------------------- i3 configuration --------------------------------------
 
-font                    pango:Iosevka Term Regular 10
+font                    pango:Hasklug Nerd Font 10
 floating_modifier       $mod
 focus_follows_mouse     no
 border_radius           $BOR_RADIUS
@@ -75,7 +75,7 @@ for_window[instance="scratch_term"] border pixel $BOR_SCRATCH
 
 exec_always     --no-startup-id compton --config $HOME/.config/compton/config
 exec_always     --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always     --no-startup-id dunst
+exec_always     --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 exec            --no-startup-id nitrogen --restore
 exec            --no-startup-id $TERMINAL --class="scratch_term"
 exec            --no-startup-id $TERMINAL --class="scratch_py" -e ipython3 --no-banner
@@ -220,12 +220,11 @@ bindsym $mod+m                  [instance="scratch_py"]   scratchpad show; [inst
 bindsym $mod+Return             exec --no-startup-id $TERMINAL
 bindsym $mod+Shift+o            exec --no-startup-id $BROWSER 
 bindsym $mod+Shift+p            exec --no-startup-id $FILE_MANAGER
-bindsym $mod+Shift+u            exec --no-startup-id $EDITOR
 bindsym $mod+Shift+f            exec --no-startup-id firefox
-bindsym $mod+Shift+i            exec --no-startup-id spotify 
+bindsym $mod+Shift+i            exec --no-startup-id $TERMINAL -e vim 
+bindsym $mod+Shift+y            exec --no-startup-id yakyak
 bindsym $mod+d                  exec --no-startup-id rofi -show run -lines 7 -width 40 -display-run "> "
 bindsym $mod+s                  exec --no-startup-id $SCRIPT_DIR/standalone/power_menu
-bindsym $mod+Shift+y            exec --no-startup-id yakyak
 bindsym $mod+q                  exec --no-startup-id i3lock-fancy -f Iosevka-Term-Bold
 
 #----------------------- binding applications to workspace ---------------------
