@@ -62,7 +62,9 @@ def main():
                 else:
                     print("[ERROR] Directory for APP {} does not exist!".format(row.strip()))
 
-            print("[INFO ] Backup complete for all apps of device {}".format(dev_id))
+                print("[INFO] Backup complete for {}".format(row.strip()))
+
+            print("[INFO] Backup complete for all apps of device {}".format(dev_id))
 
     # uploading local copy of the dot files to github
     elif backup_mode == 'remote':

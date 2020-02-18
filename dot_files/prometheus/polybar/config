@@ -20,7 +20,7 @@
     bar_icon_style  = "FontAwesome:style=Regular:size=10;1"
 
 [bar/dp1]
-    monitor         = ${env:MONITOR:DP-1}
+    monitor         = ${env:MONITOR:DP-1-1}
     width           = 100%
     height          = ${size.bar_height}
     radius          = ${size.bar_radius}
@@ -57,7 +57,7 @@
 
 
 [bar/dp2]
-    monitor         = ${env:MONITOR:DP-2}
+    monitor         = ${env:MONITOR:DP-1-2}
     width           = 100%
     height          = ${size.bar_height}
     radius          = ${size.bar_radius}
