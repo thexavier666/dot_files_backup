@@ -10,16 +10,17 @@ set $HOME               /home/$USER
 set $BOR_WIDTH          0
 set $BOR_RADIUS         4
 set $BOR_SCRATCH        6
-set $GAP_INNER          6
+set $GAP_INNER          10
 set $DISPLAY_DEV_1      eDP-1
 set $DISPLAY_DEV_2      eDP-1
+set $INC_VAL            7
 
 set $mod                Mod1
 set $mod_alt            Mod4
 
 #----------------------- i3 configuration --------------------------------------
 
-font                    pango:DaddyTimeMono Nerd Font 11
+font                    pango:Hasklug Nerd Font 10
 floating_modifier       $mod
 focus_follows_mouse     no
 border_radius           $BOR_RADIUS
@@ -72,18 +73,23 @@ for_window[instance="scratch_term"] move scratchpad
 for_window[instance="scratch_term"] border pixel $BOR_SCRATCH
 
 for_window[instance="scratch_flt"] floating enable
+for_window[instance="scratch_flt"] move position center 
 for_window[instance="scratch_flt"] resize set 900 200
 for_window[instance="scratch_flt"] border pixel $BOR_SCRATCH
 
+#----------------------- force floating ----------------------------------------
+
+for_window[title="Steam - News"] floating enable
+for_window[title="Friends List"] floating enable
+
 #----------------------- autostart with i3 -------------------------------------
 
-exec_always     --no-startup-id compton --config $HOME/.config/compton/config
-exec_always     --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always     --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
+exec            --no-startup-id compton --config $HOME/.config/compton/config
 exec            --no-startup-id nitrogen --restore
-exec            --no-startup-id xinput set-prop 13 277 1
 exec            --no-startup-id $TERMINAL --class="scratch_term"
 exec            --no-startup-id $TERMINAL --class="scratch_py" -e ipython3 --no-banner
+exec_always     --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always     --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 
 #----------------------- i3 keybindings ----------------------------------------
 
@@ -108,6 +114,12 @@ bindsym $mod+Shift+space        floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space              focus mode_toggle
+
+# toggle current window sticky
+bindsym $mod+Shift+t            sticky toggle
+
+# change to RESIZE mode
+bindsym $mod+r                  mode "RESIZE"
 
 # change focus
 bindsym $mod+h                  focus left
@@ -144,6 +156,25 @@ bindsym $mod+Ctrl+Left          resize shrink width         1 px or 1 ppt
 bindsym $mod+Ctrl+Down          resize grow height          1 px or 1 ppt
 bindsym $mod+Ctrl+Up            resize shrink height        1 px or 1 ppt
 bindsym $mod+Ctrl+Right         resize grow width           1 px or 1 ppt
+
+mode "RESIZE"
+{
+    # resizing windows on the fly
+    bindsym $mod+Ctrl+h             resize shrink width         $INC_VAL px or $INC_VAL ppt
+    bindsym $mod+Ctrl+j             resize grow height          $INC_VAL px or $INC_VAL ppt
+    bindsym $mod+Ctrl+k             resize shrink height        $INC_VAL px or $INC_VAL ppt
+    bindsym $mod+Ctrl+l             resize grow width           $INC_VAL px or $INC_VAL ppt
+    
+    # same bindings, but for the arrow keys
+    bindsym $mod+Ctrl+Left          resize shrink width         $INC_VAL px or $INC_VAL ppt
+    bindsym $mod+Ctrl+Down          resize grow height          $INC_VAL px or $INC_VAL ppt
+    bindsym $mod+Ctrl+Up            resize shrink height        $INC_VAL px or $INC_VAL ppt
+    bindsym $mod+Ctrl+Right         resize grow width           $INC_VAL px or $INC_VAL ppt
+
+    # escape to default mode
+    bindsym $mod+Escape             mode default
+    bindsym $mod+r                  mode default
+}
 
 # dynamically changing inner and outer gaps
 bindsym $mod_alt+h              gaps inner current plus     2
@@ -242,10 +273,13 @@ bindsym $mod+Shift+o            exec --no-startup-id $BROWSER
 bindsym $mod+Shift+p            exec --no-startup-id $FILE_MANAGER
 bindsym $mod+Shift+i            exec --no-startup-id $TERMINAL -e vim
 bindsym $mod+Shift+y            exec --no-startup-id yakyak
-bindsym $mod+d                  exec --no-startup-id rofi -show run -lines 7 -width 40 -display-run "> "
+bindsym $mod+d                  exec --no-startup-id rofi -show run -lines 7 -width 40 -display-run "> " -show-icons
 bindsym $mod+s                  exec --no-startup-id $SCRIPT_DIR/standalone/power_menu
 bindsym $mod+q                  exec --no-startup-id i3lock-fancy -f Iosevka-Term-Bold
 
 #----------------------- binding applications to workspace ---------------------
 
-assign [class="yakyak"] "10"
+assign [class="yakyak"]         "10"
+assign [class="Steam"]          "8"
+
+#-------------------------------------------------------------------------------
