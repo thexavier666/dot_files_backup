@@ -9,5 +9,5 @@ while pgrep -u $UID -x polybar >/dev/null
 done
 
 # Launch bar1 and bar2
-polybar bar1 &
-polybar bar2 &
+polybar -c="$HOME/.config/polybar/config.ini" bar1 &
+polybar -c="$HOME/.config/polybar/config.ini" bar2 &

@@ -21,7 +21,7 @@ vsync                 = "opengl-swc";
 
 # WORKSPACE FADING/DIMMING
 fading                = true;
-fade-delta            = 8;
+fade-delta            = 5;
 fade-in-step          = 0.03;
 fade-out-step         = 0.03;
 frame-opacity         = 1;

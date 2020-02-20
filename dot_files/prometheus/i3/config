@@ -29,6 +29,8 @@ border_radius           $BOR_RADIUS
 # no title for windows AND a tiny border pixel
 for_window [class="^.*"] border pixel $BOR_WIDTH
 
+floating_maximum_size   1200 x 675
+
 ## binding workspace to display
 workspace "1"           output $DISPLAY_DEV_1
 workspace "2"           output $DISPLAY_DEV_1
@@ -90,7 +92,10 @@ exec_always     --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 
 #----------------------- i3 keybindings ----------------------------------------
 
+# kill current container
 bindsym $mod+Shift+q            kill
+
+# restart i3
 bindsym $mod+Shift+r            restart
 
 # split in horizontal orientation
