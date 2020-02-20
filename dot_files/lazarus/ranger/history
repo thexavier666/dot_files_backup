@@ -36,3 +36,11 @@ rename svn_remote
 rename nice.jpg
 rename amara_time.csv
 delete
+rename coding_laz.ini
+rename coding_pro.ini
+rename config_bak
+rename config
+w
+rename config.ini
+rename config_original.ini
+cd 
