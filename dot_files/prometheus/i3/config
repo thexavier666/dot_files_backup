@@ -8,19 +8,20 @@ set $USER               xavier666
 set $SCRIPT_DIR         /home/$USER/Documents/scripts_dir
 set $HOME               /home/$USER
 set $BOR_WIDTH          0
-set $BOR_RADIUS         4
-set $BOR_SCRATCH        6
+set $BOR_RADIUS         6
+set $BOR_SCRATCH        10
 set $GAP_INNER          10
 set $DISPLAY_DEV_1      DP-1-1
 set $DISPLAY_DEV_2      DP-1-2
 set $INC_VAL            7
+set $INC_GAP            2
 
 set $mod                Mod1
 set $mod_alt            Mod4
 
 #----------------------- i3 configuration --------------------------------------
 
-font                    pango:Hasklug Nerd Font 10
+font                    pango:Cascadia Mono Pl 10
 floating_modifier       $mod
 focus_follows_mouse     no
 border_radius           $BOR_RADIUS
@@ -108,11 +109,11 @@ bindsym $mod+e                  layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space        floating toggle
 
-# toggle current window sticky
-bindsym $mod+Shift+t            sticky toggle
-
 # change focus between tiling / floating windows
 bindsym $mod+space              focus mode_toggle
+
+# toggle current window sticky
+bindsym $mod+Shift+t            sticky toggle
 
 # change to RESIZE mode
 bindsym $mod+r                  mode "RESIZE"
@@ -173,10 +174,10 @@ mode "RESIZE"
 }
 
 # dynamically changing inner and outer gaps
-bindsym $mod_alt+h              gaps inner current plus     2
-bindsym $mod_alt+l              gaps inner current minus    2
-bindsym $mod_alt+j              gaps outer current minus    2
-bindsym $mod_alt+k              gaps outer current plus     2
+bindsym $mod_alt+h              gaps inner current plus     $INC_GAP
+bindsym $mod_alt+l              gaps inner current minus    $INC_GAP
+bindsym $mod_alt+j              gaps outer current minus    $INC_GAP
+bindsym $mod_alt+k              gaps outer current plus     $INC_GAP
 
 #----------------------- workspace keybindings ---------------------------------
 
