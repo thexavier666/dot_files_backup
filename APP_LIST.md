@@ -1,3 +1,4 @@
+|----------------------|-----------|--------------------------------------|
 | Purpose              | Name      | PPA/Github URL                       |
 |----------------------|-----------|--------------------------------------|
 | Browser              | firefox   | -                                    |
@@ -9,3 +10,19 @@
 | Window manager       | i3-gaps   | https://github.com/resloved/i3       |
 | Notification manager | dunst     | -                                    |
 | Terminal multiplexer | screen    | -                                    |
+|----------------------|-----------|--------------------------------------|
+
+
+|----------------------|-----------|--------------------------------------|
+| Purpose              | Name      | PPA/Github URL                       |
+|----------------------|-----------|--------------------------------------|
+| Music visualizer     | vis       |
+| Music player         | cmus      |
+| Term fancifier       | pipes.sh  |
+| Term fancifier       | umatrix   |
+| Podcast              | castero   |
+| Disk analyzer        | ncdu      |
+| Wallpaper manager    | nitrogen  |
+| Sys. monitor         | htop      |
+| Sys. monitor         | nvtop     |
+|----------------------|-----------|--------------------------------------|

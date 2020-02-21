@@ -76,12 +76,15 @@ def main():
             sp.call("git config user.name {}".format(config.GIT_USERNAME()), shell=True)
             sp.call("git add remote origin {}".format(config.GIT_REMOTE_URL()), shell=True)
 
+        # pulling the latest branch
         sp.call("git pull origin master", shell=True)
+
         sp.call("git add . --force", shell=True)
         sp.call("git commit -m 'dot files pushed by user {} for machine {}'".format(user_name, dev_id), shell=True)
         sp.call("git push origin master", shell=True)
     else:
         print("[ERROR] Incorrect argument - remote or local backup?")
+        return -1
 
 if __name__ == '__main__':
     main()
