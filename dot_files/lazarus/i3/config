@@ -8,25 +8,28 @@ set $USER               xavier666
 set $SCRIPT_DIR         /home/$USER/Documents/scripts_dir
 set $HOME               /home/$USER
 set $BOR_WIDTH          0
-set $BOR_RADIUS         4
-set $BOR_SCRATCH        6
+set $BOR_RADIUS         6
+set $BOR_SCRATCH        10
 set $GAP_INNER          10
 set $DISPLAY_DEV_1      eDP-1
 set $DISPLAY_DEV_2      eDP-1
 set $INC_VAL            7
+set $INC_GAP            2
 
 set $mod                Mod1
 set $mod_alt            Mod4
 
 #----------------------- i3 configuration --------------------------------------
 
-font                    pango:Hasklug Nerd Font 10
+font                    pango:Cascadia Mono Pl 10
 floating_modifier       $mod
 focus_follows_mouse     no
 border_radius           $BOR_RADIUS
 
 # no title for windows AND a tiny border pixel
 for_window [class="^.*"] border pixel $BOR_WIDTH
+
+floating_maximum_size   1200 x 675
 
 ## binding workspace to display
 workspace "1"           output $DISPLAY_DEV_1
@@ -93,7 +96,10 @@ exec_always     --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
 
 #----------------------- i3 keybindings ----------------------------------------
 
+# kill current container
 bindsym $mod+Shift+q            kill
+
+# restart i3
 bindsym $mod+Shift+r            restart
 
 # split in horizontal orientation
@@ -177,10 +183,10 @@ mode "RESIZE"
 }
 
 # dynamically changing inner and outer gaps
-bindsym $mod_alt+h              gaps inner current plus     2
-bindsym $mod_alt+l              gaps inner current minus    2
-bindsym $mod_alt+j              gaps outer current minus    2
-bindsym $mod_alt+k              gaps outer current plus     2
+bindsym $mod_alt+h              gaps inner current plus     $INC_GAP
+bindsym $mod_alt+l              gaps inner current minus    $INC_GAP
+bindsym $mod_alt+j              gaps outer current minus    $INC_GAP
+bindsym $mod_alt+k              gaps outer current plus     $INC_GAP
 
 #----------------------- workspace keybindings ---------------------------------
 

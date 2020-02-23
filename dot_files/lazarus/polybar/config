@@ -1,6 +1,6 @@
 [colors]
-    background      = #00000111
-    background-alt  = #444
+    background      = #AF000000
+    background-alt  = #0a6cf5
     foreground      = #dfdfdf
     foreground-alt  = #639fff
     primary         = #ffb52a
@@ -12,24 +12,25 @@
     get_battery     = /home/xavier666/Documents/scripts_dir/polybar/get_battery
 
 [size]
-    bar_height      = 26
+    bar_height      = 25
     bar_font        = 22
+    bar_width       = 100%
     line_size       = 0
     line_color      = #0a6cf5
     bar_radius      = 0
     bar_border_size = 0
 
 [style]
-    bar_font_style  = "Iosevka Term:style=Regular:size=12;1"
+    bar_font_style  = "Cascadia Mono Pl:style=Regular:size=10;1"
     bar_icon_style  = "FontAwesome:style=Regular:size=10;1"
 
 [bar/bar1]
     monitor         = ${env:MONITOR:eDP-1}
-    width           = 100%
+    width           = ${size.bar_width}
     height          = ${size.bar_height}
     radius          = ${size.bar_radius}
     fixed-center    = false
-    bottom          = false 
+    bottom          = false
 
     background      = ${colors.background}
     foreground      = ${colors.foreground}
@@ -51,7 +52,7 @@
 
     modules-left    = bspwm i3 
     modules-center  = only_date only_time
-    modules-right   = backlight pulseaudio
+    modules-right   = wlan_down wlan_up wlan eth_down eth_up eth backlight pulseaudio
 
     tray-position   = right
     tray-padding    = 0
@@ -61,7 +62,7 @@
 
 [bar/bar2]
     monitor         = ${env:MONITOR:eDP-1}
-    width           = 100%
+    width           = ${size.bar_width}
     height          = ${size.bar_height}
     radius          = ${size.bar_radius}
     fixed-center    = false
@@ -85,8 +86,7 @@
     font-0          = ${style.bar_font_style}
     font-1          = ${style.bar_icon_style}
 
-    modules-left    = cpu memory disk battery temperature filesystem
-    modules-right   = wlan_down wlan_up wlan eth_down eth_up eth battery_charge 
+    modules-right   = cpu memory disk battery temperature filesystem battery_charge 
 
     tray-position   = right
     tray-padding    = 0
@@ -195,6 +195,8 @@
     interface = wlan0
     interval = 3.0
 
+    format-connected-prefix = " "
+    format-connected-prefix-foreground = ${colors.foreground-alt}
     format-connected = <ramp-signal> <label-connected>
     format-connected-underline = ${size.line_color}
     label-connected = %essid%
@@ -205,11 +207,11 @@
     ;label-disconnected = %ifname% disconnected
     ;label-disconnected-foreground = ${colors.foreground-alt}
 
-    ramp-signal-0 = 
-    ramp-signal-1 = 
-    ramp-signal-2 = 
-    ramp-signal-3 = 
-    ramp-signal-4 = 
+    ramp-signal-0 = 
+    ramp-signal-1 = 
+    ramp-signal-2 = 
+    ramp-signal-3 = 
+    ramp-signal-4 = 
     ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/wlan_up]
@@ -313,9 +315,9 @@
 
     date = "%a %d %B, %Y"
 
-	format-prefix = " " 
+    format-prefix = " " 
     format-prefix-foreground = ${colors.foreground-alt}
-    label = %date%
+    label = %date:22:22%
 
 [module/only_time]
     type = internal/date
@@ -326,7 +328,7 @@
     format-prefix =  " "
     format-prefix-foreground = ${colors.foreground-alt}
     format-underline = ${size.line_color}
-    label = %time%
+    label = %time:9:9%
 
 [module/pulseaudio]
     type = internal/pulseaudio
