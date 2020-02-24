@@ -272,6 +272,10 @@ bindsym F12                     exec --no-startup-id notify-send "DUNST_COMMAND_
 bindsym $mod+n                  [instance="scratch_term"] scratchpad show; [instance="scratch_term"] move position center
 bindsym $mod+m                  [instance="scratch_py"]   scratchpad show; [instance="scratch_py"]   move position center
 
+## Hide/show polybar
+bindsym $mod+comma              exec --no-startup-id killall polybar
+bindsym $mod+period             exec --no-startup-id $HOME/.config/polybar/launch.sh
+
 #----------------------- application shortcuts ---------------------------------
 
 bindsym $mod+Return             exec --no-startup-id $TERMINAL
