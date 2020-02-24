@@ -81,6 +81,7 @@ def main():
 
         sp.call("git add . --force", shell=True)
         sp.call("git commit -m 'dot files pushed by user {} for machine {}'".format(user_name, dev_id), shell=True)
+        sp.call("git status", shell=True)
         sp.call("git push origin master", shell=True)
     else:
         print("[ERROR] Incorrect argument - remote or local backup?")
