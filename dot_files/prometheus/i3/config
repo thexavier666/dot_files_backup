@@ -10,7 +10,7 @@ set $HOME               /home/$USER
 set $BOR_WIDTH          0
 set $BOR_RADIUS         6
 set $BOR_SCRATCH        10
-set $GAP_INNER          10
+set $GAP_INNER          4
 set $DISPLAY_DEV_1      DP-1-1
 set $DISPLAY_DEV_2      DP-1-2
 set $INC_VAL            7
@@ -28,8 +28,6 @@ border_radius           $BOR_RADIUS
 
 # no title for windows AND a tiny border pixel
 for_window [class="^.*"] border pixel $BOR_WIDTH
-
-floating_maximum_size   1200 x 675
 
 ## binding workspace to display
 workspace "1"           output $DISPLAY_DEV_1
@@ -49,7 +47,7 @@ gaps inner              $GAP_INNER
 gaps outer              0
 gaps horizontal         0
 gaps vertical           0
-gaps top                0
+gaps top                -4
 gaps bottom             0
 gaps right              0
 gaps left               0
@@ -88,7 +86,7 @@ exec            --no-startup-id nitrogen --restore
 exec            --no-startup-id $TERMINAL --class="scratch_term"
 exec            --no-startup-id $TERMINAL --class="scratch_py" -e ipython3 --no-banner
 exec_always     --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always     --no-startup-id dunst -config $HOME/.config/dunst/dunstrc
+exec_always     --no-startup-id dunst -config $HOME/.config/dunst/config.ini
 
 #----------------------- i3 keybindings ----------------------------------------
 
@@ -119,6 +117,9 @@ bindsym $mod+space              focus mode_toggle
 
 # toggle current window sticky
 bindsym $mod+Shift+t            sticky toggle
+
+# move current window center
+bindsym $mod_alt+c              move position center
 
 # change to RESIZE mode
 bindsym $mod+r                  mode "RESIZE"
@@ -266,7 +267,7 @@ bindsym $mod+Shift+i            exec --no-startup-id $TERMINAL -e vim
 bindsym $mod+Shift+y            exec --no-startup-id yakyak
 bindsym $mod+d                  exec --no-startup-id rofi -show run -lines 7 -width 40 -display-run "> " -show-icons
 bindsym $mod+s                  exec --no-startup-id $SCRIPT_DIR/standalone/power_menu
-bindsym $mod+q                  exec --no-startup-id i3lock-fancy -f Iosevka-Term-Bold
+bindsym $mod+q                  exec --no-startup-id i3lock-fancy -f Cascadia-Mono-Regular --
 
 #----------------------- binding applications to workspace ---------------------
 
