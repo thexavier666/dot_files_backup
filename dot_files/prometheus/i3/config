@@ -7,8 +7,8 @@ set $EDITOR             gedit
 set $USER               xavier666
 set $SCRIPT_DIR         /home/$USER/Documents/scripts_dir
 set $HOME               /home/$USER
-set $BOR_WIDTH          0
-set $BOR_RADIUS         6
+set $BOR_WIDTH          3
+set $BOR_RADIUS         3
 set $BOR_SCRATCH        10
 set $GAP_INNER          4
 set $DISPLAY_DEV_1      DP-1-1
@@ -41,6 +41,14 @@ workspace "6"           output $DISPLAY_DEV_2
 workspace "7"           output $DISPLAY_DEV_2
 workspace "8"           output $DISPLAY_DEV_2
 workspace "10"          output $DISPLAY_DEV_2
+
+workspace "11"          output $DISPLAY_DEV_2
+workspace "12"          output $DISPLAY_DEV_2
+workspace "13"          output $DISPLAY_DEV_2
+
+workspace "14"          output $DISPLAY_DEV_1
+workspace "15"          output $DISPLAY_DEV_1
+workspace "16"          output $DISPLAY_DEV_1
 
 # creating gaps between the windows
 gaps inner              $GAP_INNER
@@ -81,12 +89,11 @@ for_window[title="Friends List"] floating enable
 #----------------------- autostart with i3 -------------------------------------
 
 exec            --no-startup-id xrandr --output $DISPLAY_DEV_1 --mode 1600x900 --left-of $DISPLAY_DEV_2 --mode 1600x900
-exec            --no-startup-id compton --config $HOME/.config/compton/config
 exec            --no-startup-id nitrogen --restore
 exec            --no-startup-id $TERMINAL --class="scratch_term"
-exec            --no-startup-id $TERMINAL --class="scratch_py" -e ipython3 --no-banner
+exec_always     --no-startup-id $HOME/.config/compton/launch.sh
 exec_always     --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always     --no-startup-id dunst -config $HOME/.config/dunst/config.ini
+exec_always     --no-startup-id $HOME/.config/dunst/launch.sh
 
 #----------------------- i3 keybindings ----------------------------------------
 
@@ -174,9 +181,20 @@ mode "RESIZE"
     bindsym $mod+Ctrl+Up            resize shrink height        $INC_VAL px or $INC_VAL ppt
     bindsym $mod+Ctrl+Right         resize grow width           $INC_VAL px or $INC_VAL ppt
 
+    # move focused window
+    bindsym $mod+Shift+h            move left
+    bindsym $mod+Shift+j            move down
+    bindsym $mod+Shift+k            move up
+    bindsym $mod+Shift+l            move right
+
+    # alternatively, you can use the cursor keys:
+    bindsym $mod+Shift+Left         move left
+    bindsym $mod+Shift+Down         move down
+    bindsym $mod+Shift+Up           move up
+    bindsym $mod+Shift+Right        move right
+
     # escape to default mode
-    bindsym $mod+Escape             mode default
-    bindsym $mod+r                  mode default
+    bindsym Escape                  mode default
 }
 
 # dynamically changing inner and outer gaps
@@ -204,6 +222,13 @@ bindsym $mod+F2                 workspace 6
 bindsym $mod+F3                 workspace 7
 bindsym $mod+F4                 workspace 8
 
+bindcode $mod+87                workspace 11
+bindcode $mod+88                workspace 12
+bindcode $mod+89                workspace 13
+bindcode $mod+83                workspace 14
+bindcode $mod+84                workspace 15
+bindcode $mod+85                workspace 16
+
 # move focused container to workspace
 bindsym $mod+Shift+1            move container to workspace 1
 bindsym $mod+Shift+2            move container to workspace 2
@@ -220,6 +245,13 @@ bindsym $mod+Shift+F1           move container to workspace 5
 bindsym $mod+Shift+F2           move container to workspace 6
 bindsym $mod+Shift+F3           move container to workspace 7
 bindsym $mod+Shift+F4           move container to workspace 8
+
+bindcode $mod+Shift+87          move container to workspace 11
+bindcode $mod+Shift+88          move container to workspace 12
+bindcode $mod+Shift+89          move container to workspace 13
+bindcode $mod+Shift+83          move container to workspace 14
+bindcode $mod+Shift+84          move container to workspace 15
+bindcode $mod+Shift+85          move container to workspace 16
 
 # shift to next/previous workspace
 bindsym $mod+grave              workspace next_on_output
@@ -243,10 +275,6 @@ bindsym $mod+Pause              exec --no-startup-id cmus-remote -v +5%
 bindsym $mod_alt+F5             exec redshift -O 3700k
 bindsym $mod_alt+F6             exec redshift -O 5500k
 
-## COMPTON only
-bindsym F9                      exec --no-startup-id killall compton
-bindsym F10                     exec --no-startup-id compton --config $HOME/.config/compton/config
-
 ## Enable/Disable Dunst
 bindsym F11                     exec --no-startup-id notify-send "DUNST_COMMAND_RESUME"
 bindsym F12                     exec --no-startup-id notify-send "DUNST_COMMAND_PAUSE"
@@ -261,7 +289,7 @@ bindsym $mod+period             exec --no-startup-id $HOME/.config/polybar/launc
 #----------------------- application shortcuts ---------------------------------
 
 bindsym $mod+Return             exec --no-startup-id $TERMINAL
-bindsym $mod+Shift+o            exec --no-startup-id $BROWSER 
+bindsym $mod+Shift+o            exec --no-startup-id $BROWSER
 bindsym $mod+Shift+p            exec --no-startup-id $FILE_MANAGER
 bindsym $mod+Shift+i            exec --no-startup-id $TERMINAL -e vim
 bindsym $mod+Shift+y            exec --no-startup-id yakyak
@@ -273,5 +301,6 @@ bindsym $mod+q                  exec --no-startup-id i3lock-fancy -f Cascadia-Mo
 
 assign [class="yakyak"]         "10"
 assign [class="Steam"]          "8"
+assign [class="TeamViewer"]     "9"
 
 #-------------------------------------------------------------------------------

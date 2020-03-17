@@ -20,9 +20,9 @@ backend               = "glx";
 vsync                 = "opengl-swc";
 
 # WORKSPACE FADING/DIMMING
-fading                = true;
-fade-delta            = 5;
+fading                = false;
+fade-delta            = 4;
 fade-in-step          = 0.03;
 fade-out-step         = 0.03;
 frame-opacity         = 1;
-inactive-dim          = 0.15;
+inactive-dim          = 0.00;
